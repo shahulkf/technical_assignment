@@ -1,43 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:technical_assignment/model/transaction/transactions.dart';
+import 'package:technical_assignment/view/screen_two.dart';
+import 'package:technical_assignment/widgets/transactions_widget.dart';
 
 class ScreenThree extends StatelessWidget {
-  const ScreenThree({super.key});
+  const ScreenThree({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ScreenTwo(),
+            ));
+        return true;
+      },
+      child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ScreenTwo(),
+                    ));
+              },
+              icon: const Icon(Icons.arrow_back)),
           title: const Text('Transactions'),
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: transactionHistory.length,
-                itemBuilder: (context, index) {
-                  final transaction = transactionHistory[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 30,
-                        child: Text(transaction.leading),
-                      ),
-                      title: Text(transaction.title),
-                      subtitle: Text(transaction.subtitle),
-                      trailing: Text(
-                        transaction.trialing,
-                        style: const TextStyle(fontSize: 18),
-                      ),
-                    ),
-                  );
-                },
-              )
+              _buildTransactionList(),
             ],
           ),
-        ));
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTransactionList() {
+    return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: transactionHistory.length,
+      itemBuilder: (context, index) {
+        final transaction = transactionHistory[index];
+        return TransactionHistoryWidget(transaction: transaction);
+      },
+    );
   }
 }

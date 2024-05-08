@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:technical_assignment/constants/appstrings/appstrings.dart';
 
 class TransactionModel{
