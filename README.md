@@ -1,16 +1,19 @@
-# technical_assignment
+# Screen Recording Restriction App
 
-A new Flutter project.
+This Flutter project implements a simple app with three pages, 
+where screenshots and screen recording are disabled on the second page.
 
-## Getting Started
+## Navigation Pattern
+1. Page 1
+2. Page 2 (Screenshots and screen recording disabled)
+3. Page 3
 
-This project is a starting point for a Flutter application.
+## Features
+- Disables screenshots and screen recording on Page 2.
+- Restricts third-party recording software.
+- 
+## Dependencies
+- flutter_window_size: ^0.1.4 (for screenshot and screen recording restriction)
+- flutter: sdk (for Flutter framework)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
